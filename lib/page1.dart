@@ -177,156 +177,199 @@ class _Page1State extends State<Page1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quiz", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.amberAccent,
-        foregroundColor: Colors.black,
-      ),
-      body: Column(
-        children: [
-          quiz.isNotEmpty ? Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              controller: _scrollController,
-              itemCount: quiz.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (quiz[index].img != null)
-                        Image.asset(
-                          quiz[index].img!,
-                          width: double.infinity,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(height: 8,),
-                        Text(
-                          "${index+1}. ${quiz[index].title}",
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        ListView.builder(// choice
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: quiz[index].choice.length,
-                          itemBuilder: (context, idx) {
-                            return ListTile(
-                              leading: Radio(
-                                value: quiz[index].choice[idx].id, 
-                                groupValue: multichoice[index], 
-                                onChanged: (int ? value) {
-                                  setState(() {
-                                    multichoice[index] = value!;
-                                    text = "$multichoice Pos: ${((_scrollController.position.pixels/
-                                      _scrollController.position.maxScrollExtent)*100).toInt()}";                 
-                                  });
-                                }
-                              ),
-                              title: Text(quiz[index].choice[idx].title, style: TextStyle(fontSize: 18),),
-                            );
-                          }
-                        ),
-                        if (index == quiz.length-1) // display button submit
-                          Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    if (checkSubmit()) {
-                                      // บันทึกข้อมูลคะแนนมากสุดต่ำสุดใน shared_preferences
-                                      saveScoresAndGrade();
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context){
-                                          return AlertDialog(
-                                            title: Row(
-                                              children: [
-                                                Text(
-                                                  "Score",
-                                                  style: TextStyle(fontSize: 20,
-                                                  fontWeight: FontWeight.bold)
-                                                )
-                                              ],
-                                            ),
-                                            content: Column(
-                                              children: [
-                                                Text(
-                                                  'Grade $grade',
-                                                  style: TextStyle(fontSize: 25),
-                                                  maxLines: 3,
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                SizedBox(height: 10,),
-                                                Text(
-                                                  'Percentage $percentScore %',
-                                                  style: TextStyle(fontSize: 25),
-                                                  maxLines: 3,
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                SizedBox(height: 10,),
-                                                Text(
-                                                  'Correct: ${correct} , Incorrect: ${incorrect}',
-                                                  style: TextStyle(fontSize: 20),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                SizedBox(height: 10,),
-                                                Text(
-                                                  'worst score: $worstScore',
-                                                  style: TextStyle(fontSize: 20),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                SizedBox(height: 10,),
-                                                Text(
-                                                  'best score: $bestScore',
-                                                  style: TextStyle(fontSize: 20),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              ],
-                                            ),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () async{
-                                                  await quizView();
-                                                  Navigator.push(
-                                                    context, 
-                                                    MaterialPageRoute(
-                                                      builder: (context) => Pagemain()
-                                                    )
-                                                  );
-                                                }, 
-                                                child: Text("Ok"),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }
-                                  }, 
-                                  child: Text("Submit")
-                                ),
-                                SizedBox(width: 10),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.red,
-                                    foregroundColor: Colors.white
-                                  ),
-                                  onPressed: () {
-                                    resetRadio();
-                                  }, 
-                                  child: Text("Clear")
-                                )
-                              ],
-                            ),
-                          )
-                    ],
-                  ),
-                );
-              }
+        title: Row(
+          children: [
+            Text("Quiz", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            Container(
+              width: 50,
+              height: 50,
+              child: Image.asset('assets/img/question_mark.png'),
             )
-          ) : Text("NoData")
-        ],
+          ],
+        ),
+        backgroundColor: Colors.yellow[200],
+        foregroundColor: const Color.fromARGB(255, 66, 65, 65),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            quiz.isNotEmpty ? Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                controller: _scrollController,
+                itemCount: quiz.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        quiz[index].img != null 
+                        ? 
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                child: Image.asset(
+                                        quiz[index].img!,
+                                        width: double.infinity,
+                                        height: 150,
+                                        fit: BoxFit.cover,
+                                      ),
+                              ),
+                              SizedBox(width: 10,),
+                              Expanded(
+                                child: Text(
+                                  "${index+1}. ${quiz[index].title}",
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 61, 60, 60)),
+                                ),
+                              ), 
+                            ],
+                          )
+                        :
+                          Text(
+                            "${index+1}. ${quiz[index].title}",
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 61, 60, 60)),
+                          ), 
+                          ListView.builder(// choice
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: quiz[index].choice.length,
+                            itemBuilder: (context, idx) {
+                              return ListTile(
+                                leading: Radio(
+                                  value: quiz[index].choice[idx].id, 
+                                  groupValue: multichoice[index], 
+                                  onChanged: (int ? value) {
+                                    setState(() {
+                                      multichoice[index] = value!;
+                                      text = "$multichoice Pos: ${((_scrollController.position.pixels/
+                                        _scrollController.position.maxScrollExtent)*100).toInt()}";                 
+                                    });
+                                  }
+                                ),
+                                title: Text(quiz[index].choice[idx].title, style: TextStyle(fontSize: 16),),
+                              );
+                            }
+                          ),
+                          if (index == quiz.length-1) // display button submit
+                            Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.orange[300],
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10)
+                                        )
+                                      ),
+                                      onPressed: () {
+                                        resetRadio();
+                                      }, 
+                                      child: Text("Clear", style: TextStyle(color: Colors.black),)
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.green[400],
+                                        foregroundColor: Colors.black,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(12)
+                                        )
+                                      ),
+                                      onPressed: () {
+                                        if (checkSubmit()) {
+                                          // บันทึกข้อมูลคะแนนมากสุดต่ำสุดใน shared_preferences
+                                          saveScoresAndGrade();
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context){
+                                              return AlertDialog(
+                                                title: Row(
+                                                  children: [
+                                                    Text(
+                                                      "Score",
+                                                      style: TextStyle(fontSize: 20,
+                                                      fontWeight: FontWeight.bold)
+                                                    )
+                                                  ],
+                                                ),
+                                                content: Column(
+                                                  children: [
+                                                    Text(
+                                                      'Grade $grade',
+                                                      style: TextStyle(fontSize: 25),
+                                                      maxLines: 3,
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                    SizedBox(height: 10,),
+                                                    Text(
+                                                      'Percentage $percentScore %',
+                                                      style: TextStyle(fontSize: 25),
+                                                      maxLines: 3,
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                    SizedBox(height: 10,),
+                                                    Text(
+                                                      'Correct: ${correct} , Incorrect: ${incorrect}',
+                                                      style: TextStyle(fontSize: 20),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                    SizedBox(height: 10,),
+                                                    Text(
+                                                      'worst score: $worstScore',
+                                                      style: TextStyle(fontSize: 20),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                    SizedBox(height: 10,),
+                                                    Text(
+                                                      'best score: $bestScore',
+                                                      style: TextStyle(fontSize: 20),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                  ],
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () async{
+                                                      await quizView();
+                                                      Navigator.push(
+                                                        context, 
+                                                        MaterialPageRoute(
+                                                          builder: (context) => Pagemain()
+                                                        )
+                                                      );
+                                                    }, 
+                                                    child: Text("Ok"),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+                                      }, 
+                                      child: Text("Submit")
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                      ],
+                    ),
+                  );
+                }
+              )
+            ) : Text("NoData")
+          ],
+        ),
       ),
     );
   }

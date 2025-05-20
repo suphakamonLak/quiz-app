@@ -12,7 +12,6 @@ class Pagemain extends StatefulWidget {
 class _PagemainState extends State<Pagemain> {
   late int currentView = 0; //จำนวนที่ทำแบบทดสอบ
   
-
   @override
   void initState() {
     super.initState();
@@ -30,32 +29,77 @@ class _PagemainState extends State<Pagemain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow[200],
       appBar: AppBar(
-        title: Text("Home Page", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.yellow[200],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Welcome to Quiz App!", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10,),
-            Text("Amount did quiz: $currentView"),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) => Page1())
-                ).then((_) {
-                  loadView();
-                });
-              }, 
-              child: Text("Start to quiz")
-            ),
-            
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 100,
+                                child: Image.asset('assets/img/garfield.png'),
+                              ),
+                              Text("Let's start Quiz!", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                            ],
+                          )
+                        ),
+                      ),
+                      Text("Welcome to Quiz App. Don't worry if you don't know everything - just try your best and enjoy the process. Good luck!"),
+                      SizedBox(height: 10,),
+                      Text("Amount did quiz: $currentView", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,))
+                    ]
+                  ),
+                )
+              ),
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.all(2),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.orange[400],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)
+                      )
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (BuildContext context) => Page1())
+                      ).then((_) {
+                        loadView();
+                      });
+                    }, 
+                    child: Text("Start to quiz", style: TextStyle(fontSize: 16),)
+                  ),
+                ),
+              )
+            ],
+          )
         ),
       ),
     );

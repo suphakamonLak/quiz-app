@@ -1,43 +1,41 @@
 [
     {
-        "title" : "Q1 ?",
+        "title" : "Google Flutter ใช้ภาษาโปรแกรมมิ่งอะไรในการเขียนแอพพลิเคชั่น ?",
         "choice" : [
-            {"id" : 1, "title" : "choice 1"},
-            {"id" : 2, "title" : "choice 2"},
-            {"id" : 3, "title" : "choice 3"},
-            {"id" : 4, "title" : "choice 4"}
+            {"id" : 1, "title" : "JavaScript"},
+            {"id" : 2, "title" : "C#"},
+            {"id" : 3, "title" : "HTML"},
+            {"id" : 4, "title" : "Dart"}
         ],
-        "answerId" : 1
+        "answerId" : 4
     },
     {
-        "title" : "Q2 ?",
+        "title" : "Google Flutter เป็นเทคโนโลยีการพัฒนาแอพพลิเคชั่นแบบ Native หรือไม่ ?",
         "choice" : [
-            {"id" : 1, "title" : "choice 1"},
-            {"id" : 2, "title" : "choice 2"},
-            {"id" : 3, "title" : "choice 3"},
-            {"id" : 4, "title" : "choice 4"}
+            {"id" : 1, "title" : "ใช่"},
+            {"id" : 2, "title" : "ไม่ใช่"}
         ],
         "answerId" : 2
     },
     {
-        "title" : "Q3 ?",
+        "title" : "การพัฒนาแอพพลิเคชั่นด้วย Google Flutter มีค่าใช้จ่ายด้านใดบ้าง ?",
         "choice" : [
-            {"id" : 1, "title" : "choice 1"},
-            {"id" : 2, "title" : "choice 2"},
-            {"id" : 3, "title" : "choice 3"},
-            {"id" : 4, "title" : "choice 4"}
-        ],
-        "answerId" : 3
-    },
-    {
-        "title" : "Q4 ?",
-        "img" : "assets/img/android.png",
-        "choice" : [
-            {"id" : 1, "title" : "choice 1"},
-            {"id" : 2, "title" : "choice 2"},
-            {"id" : 3, "title" : "choice 3"},
-            {"id" : 4, "title" : "choice 4"}
+            {"id" : 1, "title" : "อาจจะต้องใช้เครื่องที่แรงขึ้นเพื่อลดระยะเวลาในการประมวลผล"},
+            {"id" : 2, "title" : "เสียค่าสมัครสมาชิก Apple App Store และ Google Play Store ด้วย"},
+            {"id" : 3, "title" : "มีการซื้ออุปกรณณ์มาทดสอบแอพพลิเคชั่น"},
+            {"id" : 4, "title" : "ถูกทุกข้อ"}
         ],
         "answerId" : 4
+    },
+    {
+        "title" : "รูปภาพดังกล่าวเป็นระบบปฏิบัติการอะไร ?",
+        "img" : "assets/img/android.png",
+        "choice" : [
+            {"id" : 1, "title" : "ios"},
+            {"id" : 2, "title" : "andriod"},
+            {"id" : 3, "title" : "linux"},
+            {"id" : 4, "title" : "ไม่มีข้อถูก"}
+        ],
+        "answerId" : 2
     }
 ]

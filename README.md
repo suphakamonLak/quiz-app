@@ -29,5 +29,7 @@ This app is ideal for learning Flutter fundamentals, state management, and handl
 <img width="150" src="https://github.com/user-attachments/assets/ade0f40b-df5f-485f-b8e3-7723b0384602"/>
 <img width="150" src="https://github.com/user-attachments/assets/2abc19aa-bf3c-4b82-8fd9-66bbf7568235"/>
 
-📱 Download and Install the App
+---
+
+## 📱 Download and Install the App
 https://drive.google.com/drive/folders/1tj7yY5DVow8eTgykBZ3qyRi4bjYQ28nJ?usp=sharing

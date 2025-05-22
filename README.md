@@ -1,16 +1,33 @@
-# test_midterm2
+![Picture1](https://github.com/user-attachments/assets/25bbbfc1-07d4-482b-8f71-b03403abf029)# 📚 Quiz App - Flutter Project
+A simple quiz application built with **Flutter**, using a local **JSON file** to store questions and answers.  
+This app is ideal for learning Flutter fundamentals, state management, and handling local data.
 
-A new Flutter project.
+---
 
-## Getting Started
+## 🧩 Features
+- **Home screen** displays the total number of quiz attempts and a **"Start to Quiz"** button.
+- Contains **4 questions** in total.
+- Every quiz session **randomly selects questions** from the pool.
+- After submitting the quiz, the app displays:
+  - Final **grade**
+  - **Percentage** of correct answers
+  - Number of **correct** and **incorrect** answers
+  - **Highest number of correct answers** ever achieved
+  - **Highest number of incorrect answers** ever recorded
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠 Tech Stack
+- 🐦 Flutter (Dart)
+- 📁 JSON (local data source)
+- 📊 In-app state management
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+📸 Screenshots
+![Picture1](https://github.com/user-attachments/assets/6cb83245-b136-4002-a20a-754a43a020bf)
+![Picture2](https://github.com/user-attachments/assets/3085dce2-d57f-4cf6-802b-e7e512061fce)
+![Picture3](https://github.com/user-attachments/assets/65ec63a4-2c82-4f8f-aa03-ba7c46c0968f)
+
+📱 Download and Install the App
+https://drive.google.com/drive/folders/1tj7yY5DVow8eTgykBZ3qyRi4bjYQ28nJ?usp=sharing

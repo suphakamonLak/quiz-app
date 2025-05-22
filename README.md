@@ -32,4 +32,4 @@ This app is ideal for learning Flutter fundamentals, state management, and handl
 ---
 
 ## 📱 Download and Install the App
-https://drive.google.com/drive/folders/1tj7yY5DVow8eTgykBZ3qyRi4bjYQ28nJ?usp=sharing
+https://drive.google.com/file/d/1ctqTvYSGPU0_fHroy14591JOG5uotrVB/view?usp=drive_link
